@@ -8,7 +8,7 @@ from fastapi import APIRouter, HTTPException, Depends, Query
 from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel, Field
 
-from observability import (
+from src.observability import (
     get_registry,
     get_fraud_metrics,
     get_evaluation_store,
