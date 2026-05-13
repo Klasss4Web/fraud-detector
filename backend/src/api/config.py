@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     port: int = 8000
 
     # CORS Settings
-    cors_origins: list[str] = ["http://localhost:3000", "http://localhost:5173"]
+    cors_origins: list[str] = ["http://localhost:3000", "http://localhost:5173", "https://fraud-detector-azure.vercel.app/"]
 
     # Database Settings
     database_url: str = None
