@@ -6,7 +6,7 @@ import time
 from typing import Any
 from fastapi import APIRouter, HTTPException, Depends
 
-from api.models import (
+from src.api.models import (
     TransactionRequest,
     InsuranceClaimRequest,
     UserProfileRequest,
@@ -24,8 +24,8 @@ from api.models import (
     MixedDetectionRequest,
     MixedDetectionResponse,
 )
-from api.config import Settings, get_settings
-from orchestrator import FraudDetectionOrchestrator, EntityType
+from src.api.config import Settings, get_settings
+from src.orchestrator import FraudDetectionOrchestrator, EntityType
 
 router = APIRouter()
 
