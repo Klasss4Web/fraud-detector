@@ -6,7 +6,7 @@ import time
 from typing import Any
 from fastapi import APIRouter, HTTPException, Depends
 
-from src.api.models import (
+from .models import (
     TransactionRequest,
     InsuranceClaimRequest,
     UserProfileRequest,
@@ -402,7 +402,7 @@ async def analyze_batch(
 
 # ============== Fraud Simulation Endpoint ==============
 
-from orchestrator import FraudDetectionOrchestrator
+from src.orchestrator import FraudDetectionOrchestrator
 
 
 @router.get(
