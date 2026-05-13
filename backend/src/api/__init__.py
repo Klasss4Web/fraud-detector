@@ -201,7 +201,7 @@ A comprehensive fraud detection API that uses specialized AI agents to detect fr
         )
 
     # Include routes
-    from api.observability_plots import router as observability_plots_router
+    from .observability_plots import router as observability_plots_router
 
     # Main API routes
     app.include_router(router, prefix="/api/v1")
@@ -221,7 +221,7 @@ A comprehensive fraud detection API that uses specialized AI agents to detect fr
 
     # Webhook routes (optional - requires db module)
     try:
-        from api.webhooks import router as webhook_router
+        from .webhooks import router as webhook_router
 
         app.include_router(webhook_router, prefix="/api/v1")
         logging.getLogger("api").info("Webhook routes loaded")
