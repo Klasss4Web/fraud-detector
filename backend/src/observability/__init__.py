@@ -4,7 +4,7 @@ Observability package for fraud detection system.
 Provides tracing, metrics, evaluation, logging, and persistence capabilities.
 """
 
-from observability.tracing import (
+from .tracing import (
     Tracer,
     Trace,
     Span,
@@ -18,7 +18,7 @@ from observability.tracing import (
     trace_llm_call,
 )
 
-from observability.metrics import (
+from .metrics import (
     MetricsRegistry,
     Counter,
     Gauge,
@@ -28,7 +28,7 @@ from observability.metrics import (
     get_fraud_metrics,
 )
 
-from observability.evaluation import (
+from .evaluation import (
     EvaluationStore,
     EvaluationRecord,
     EvaluationOutcome,
@@ -39,7 +39,7 @@ from observability.evaluation import (
     get_feedback_loop,
 )
 
-from observability.logging import (
+from .logging import (
     setup_logging,
     get_logger,
     get_audit_logger,
@@ -47,7 +47,7 @@ from observability.logging import (
     ContextLogger,
 )
 
-from observability.metrics_persistence import (
+from .metrics_persistence import (
     MetricsPersistence,
     PersistenceConfig,
     PersistenceInterval,
