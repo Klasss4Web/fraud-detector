@@ -2,7 +2,7 @@
 Workflow package for fraud detection multi-agent system.
 """
 
-from workflow.state import (
+from .state import (
     WorkflowState,
     WorkflowStatus,
     AlertSeverity,

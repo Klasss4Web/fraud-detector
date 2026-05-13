@@ -15,8 +15,8 @@ from src.observability import (
     get_feedback_loop,
     EvaluationOutcome,
 )
-from observability.metrics import export_prometheus
-from observability.llm_tracking import get_llm_tracker
+from src.observability.metrics import export_prometheus
+from src.observability.llm_tracking import get_llm_tracker
 
 router = APIRouter(prefix="/observability", tags=["Observability"])
 
