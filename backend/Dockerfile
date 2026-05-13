@@ -1,34 +1,32 @@
-# Use the official Python image as the base image
 FROM python:3.10-slim
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_CREATE=false
 
-# Set work directory
 WORKDIR /app
 
-# Install system dependencies
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends gcc build-essential && \
+    apt-get install -y --no-install-recommends gcc build-essential libffi-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy requirements
-COPY pyproject.toml ./
+RUN pip install poetry
 
-# Install pip and poetry
-RUN pip install --upgrade pip && \
-    pip install poetry
+# 1. Copy BOTH files. If poetry.lock is missing, poetry install will fail.
+# If you don't have a lock file yet, run 'poetry lock' locally first.
+COPY pyproject.toml poetry.lock* ./
 
-# Copy the backend source code
+# 2. Key Change: Use --no-root
+# This installs only the dependencies and avoids the 'Package not found' error
+RUN poetry install --no-root --no-ansi
+
+# 3. Now copy the source code
 COPY . .
 
-# Install dependencies
-RUN poetry config virtualenvs.create false && \
-    poetry install --no-interaction --no-ansi
+# 4. Final install to verify the root project
+RUN poetry install --no-ansi
 
-# Expose the port (change if your app uses a different port)
 EXPOSE 8000
 
-# Command to run the backend (update as needed)
 CMD ["uvicorn", "src.api.routes:app", "--host", "0.0.0.0", "--port", "8000"]
