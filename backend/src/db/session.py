@@ -40,12 +40,11 @@ except ImportError:
 
 # ============== Configuration ==============
 
-envs = os.getenv("DATABASE_URL")
-print(f"Database URL from environment: {envs}")
-
 
 def get_database_url() -> str:
     """Get PostgreSQL connection URL from environment."""
+    environment = os.getenv("ENVIRONMENT")
+    print(f"Database URL from environment inside function: @@@@@ {environment}")
     return os.getenv(
         "DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/fraud_detection"
     )
