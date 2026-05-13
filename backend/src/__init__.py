@@ -8,7 +8,7 @@ This package provides specialized AI agents for detecting fraud across:
 - E-commerce orders
 """
 
-from orchestrator import FraudDetectionOrchestrator
+from .orchestrator import FraudDetectionOrchestrator
 
 __version__ = "0.1.0"
 __all__ = ["FraudDetectionOrchestrator"]
