@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8000/api/v1";
+// const API_BASE_URL = "http://localhost:8000/api/v1"; Uncomment for local development
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -94,7 +95,11 @@ export const simulateFraudAttack = async (attackType = null) => {
 
 // Detection score analysis
 export const runDetectionScoreAnalysis = async (options = {}) => {
-  const { attackTypes = null, simulationsPerType = 1, detectionThreshold = null } = options;
+  const {
+    attackTypes = null,
+    simulationsPerType = 1,
+    detectionThreshold = null,
+  } = options;
   const response = await api.post("/detection-score", {
     attack_types: attackTypes,
     simulations_per_type: simulationsPerType,
@@ -104,7 +109,10 @@ export const runDetectionScoreAnalysis = async (options = {}) => {
 };
 
 // Quick detection score analysis (GET)
-export const getDetectionScoreAnalysis = async (simulationsPerType = 1, detectionThreshold = null) => {
+export const getDetectionScoreAnalysis = async (
+  simulationsPerType = 1,
+  detectionThreshold = null,
+) => {
   let url = `/detection-score?simulations_per_type=${simulationsPerType}`;
   if (detectionThreshold !== null) {
     url += `&detection_threshold=${detectionThreshold}`;
@@ -135,7 +143,7 @@ export const getEvaluationSummary = async () => {
 
 // Get confusion matrix
 export const getConfusionMatrix = async (entityType = null) => {
-  const url = entityType 
+  const url = entityType
     ? `/observability/evaluation/confusion-matrix?entity_type=${entityType}`
     : "/observability/evaluation/confusion-matrix";
   const response = await api.get(url);
@@ -153,7 +161,10 @@ export const getAgentPerformance = async (agentName = null) => {
 
 // Record human override feedback
 export const recordHumanOverride = async (data) => {
-  const response = await api.post("/observability/feedback/human-override", data);
+  const response = await api.post(
+    "/observability/feedback/human-override",
+    data,
+  );
   return response.data;
 };
 
@@ -165,13 +176,17 @@ export const recordChargeback = async (data) => {
 
 // Get improvement suggestions
 export const getImprovementSuggestions = async () => {
-  const response = await api.get("/observability/feedback/improvement-suggestions");
+  const response = await api.get(
+    "/observability/feedback/improvement-suggestions",
+  );
   return response.data;
 };
 
 // Get negative exemplars
 export const getNegativeExemplars = async (limit = 100) => {
-  const response = await api.get(`/observability/feedback/negative-exemplars?limit=${limit}`);
+  const response = await api.get(
+    `/observability/feedback/negative-exemplars?limit=${limit}`,
+  );
   return response.data;
 };
 
@@ -196,7 +211,8 @@ export const getLLMUsageByOperation = async (hours = 24, operation = null) => {
 // Get recent LLM calls
 export const getRecentLLMCalls = async (limit = 50, filters = {}) => {
   let url = `/observability/llm/usage/recent?limit=${limit}`;
-  if (filters.operation) url += `&operation=${encodeURIComponent(filters.operation)}`;
+  if (filters.operation)
+    url += `&operation=${encodeURIComponent(filters.operation)}`;
   if (filters.agent) url += `&agent=${encodeURIComponent(filters.agent)}`;
   if (filters.model) url += `&model=${encodeURIComponent(filters.model)}`;
   if (filters.successOnly) url += `&success_only=true`;
@@ -206,13 +222,17 @@ export const getRecentLLMCalls = async (limit = 50, filters = {}) => {
 
 // Get hourly LLM stats
 export const getLLMHourlyStats = async (hours = 24) => {
-  const response = await api.get(`/observability/llm/usage/hourly?hours=${hours}`);
+  const response = await api.get(
+    `/observability/llm/usage/hourly?hours=${hours}`,
+  );
   return response.data;
 };
 
 // Get LLM cost breakdown
 export const getLLMCostBreakdown = async (hours = 24) => {
-  const response = await api.get(`/observability/llm/usage/cost-breakdown?hours=${hours}`);
+  const response = await api.get(
+    `/observability/llm/usage/cost-breakdown?hours=${hours}`,
+  );
   return response.data;
 };
 
@@ -226,13 +246,13 @@ export const getLLMOperations = async () => {
 
 // Run mixed detection analysis (legitimate + fraudulent transactions)
 export const runMixedDetectionAnalysis = async (options = {}) => {
-  const { 
-    numLegitimate = 10, 
-    numFraudulent = 10, 
+  const {
+    numLegitimate = 10,
+    numFraudulent = 10,
     detectionThreshold = null,
-    useLlm = false 
+    useLlm = false,
   } = options;
-  
+
   const response = await api.post("/detection-score-mixed", {
     num_legitimate: numLegitimate,
     num_fraudulent: numFraudulent,
@@ -243,7 +263,11 @@ export const runMixedDetectionAnalysis = async (options = {}) => {
 };
 
 // Quick mixed detection analysis (GET)
-export const getMixedDetectionAnalysis = async (numLegitimate = 10, numFraudulent = 10, detectionThreshold = null) => {
+export const getMixedDetectionAnalysis = async (
+  numLegitimate = 10,
+  numFraudulent = 10,
+  detectionThreshold = null,
+) => {
   let url = `/detection-score-mixed?num_legitimate=${numLegitimate}&num_fraudulent=${numFraudulent}`;
   if (detectionThreshold !== null) {
     url += `&detection_threshold=${detectionThreshold}`;
@@ -257,18 +281,18 @@ export const getMixedDetectionAnalysis = async (numLegitimate = 10, numFraudulen
 // Store token in localStorage
 const setAuthToken = (token) => {
   if (token) {
-    localStorage.setItem('access_token', token);
-    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    localStorage.setItem("access_token", token);
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   } else {
-    localStorage.removeItem('access_token');
-    delete api.defaults.headers.common['Authorization'];
+    localStorage.removeItem("access_token");
+    delete api.defaults.headers.common["Authorization"];
   }
 };
 
 // Initialize auth header from localStorage on load
-const storedToken = localStorage.getItem('access_token');
+const storedToken = localStorage.getItem("access_token");
 if (storedToken) {
-  api.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
+  api.defaults.headers.common["Authorization"] = `Bearer ${storedToken}`;
 }
 
 // Login
@@ -276,16 +300,16 @@ export const login = async (email, password) => {
   const response = await api.post("/auth/login", { email, password });
   const { access_token, refresh_token } = response.data;
   setAuthToken(access_token);
-  localStorage.setItem('refresh_token', refresh_token);
+  localStorage.setItem("refresh_token", refresh_token);
   return response.data;
 };
 
 // Register
 export const register = async (email, password, fullName) => {
-  const response = await api.post("/auth/register", { 
-    email, 
-    password, 
-    full_name: fullName 
+  const response = await api.post("/auth/register", {
+    email,
+    password,
+    full_name: fullName,
   });
   return response.data;
 };
@@ -293,7 +317,7 @@ export const register = async (email, password, fullName) => {
 // Logout
 export const logout = () => {
   setAuthToken(null);
-  localStorage.removeItem('refresh_token');
+  localStorage.removeItem("refresh_token");
 };
 
 // Get current user
@@ -304,13 +328,13 @@ export const getCurrentUser = async () => {
 
 // Refresh token
 export const refreshToken = async () => {
-  const refresh = localStorage.getItem('refresh_token');
-  if (!refresh) throw new Error('No refresh token');
-  
+  const refresh = localStorage.getItem("refresh_token");
+  if (!refresh) throw new Error("No refresh token");
+
   const response = await api.post("/auth/refresh", { refresh_token: refresh });
   const { access_token, refresh_token: newRefresh } = response.data;
   setAuthToken(access_token);
-  localStorage.setItem('refresh_token', newRefresh);
+  localStorage.setItem("refresh_token", newRefresh);
   return response.data;
 };
 
@@ -350,7 +374,7 @@ export const getAvailableScopes = async () => {
 
 // Check if user is authenticated
 export const isAuthenticated = () => {
-  return !!localStorage.getItem('access_token');
+  return !!localStorage.getItem("access_token");
 };
 
 // ============== Webhooks Status ==============
