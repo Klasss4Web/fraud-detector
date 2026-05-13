@@ -13,7 +13,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from uuid import uuid4
 
-from .agents import (
+from agents import (
     TransactionFraudAgent,
     InsuranceFraudAgent,
     IdentityFraudAgent,
