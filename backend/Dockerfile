@@ -1,31 +1,32 @@
-FROM python:3.10-slim
+# Change from 3.10 to 3.12 to match your project requirements
+FROM python:3.12-slim
 
 # 1. Environment setup
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PATH="/root/.local/bin:$PATH"
+    POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_CREATE=false \
+    PYTHONPATH=/app
 
 WORKDIR /app
 
-# 2. Install system tools and Poetry
-RUN apt-get update && apt-get install -y --no-install-recommends gcc build-essential && \
-    pip install poetry && \
+# 2. Install system dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc build-essential && \
     rm -rf /var/lib/apt/lists/*
 
-# 3. Copy only the pyproject.toml
+# 3. Install Poetry
+RUN pip install poetry
+
+# 4. Copy dependency file
 COPY pyproject.toml ./
 
-# 4. EXPORT AND INSTALL
-# We tell poetry to ignore the missing lock file and just install 
-# what's in the pyproject.toml directly into the system python.
-RUN poetry config virtualenvs.create false && \
-    poetry install --no-interaction --no-ansi --no-root --only main
+# 5. Install dependencies 
+# Since you have no lock file, Poetry will resolve them now
+RUN poetry install --only main --no-root --no-ansi
 
-# 5. Copy the rest of your code
+# 6. Copy the rest of the code
 COPY . .
-
-# 6. Final check: Ensure src is in the python path
-ENV PYTHONPATH=/app
 
 EXPOSE 8000
 
