@@ -1,0 +1,415 @@
+.detection-score-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.detection-score-dashboard h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #1f2937;
+}
+
+/* Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.metric-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #e5e7eb;
+}
+
+.metric-card-green {
+  border-left-color: #10b981;
+  background: linear-gradient(135deg, #ecfdf5 0%, #fff 100%);
+}
+
+.metric-card-red {
+  border-left-color: #ef4444;
+  background: linear-gradient(135deg, #fef2f2 0%, #fff 100%);
+}
+
+.metric-card-yellow {
+  border-left-color: #f59e0b;
+  background: linear-gradient(135deg, #fffbeb 0%, #fff 100%);
+}
+
+.metric-card-blue {
+  border-left-color: #3b82f6;
+  background: linear-gradient(135deg, #eff6ff 0%, #fff 100%);
+}
+
+.metric-card-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+.metric-card-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin-top: 8px;
+}
+
+.metric-card-subtitle {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 4px;
+}
+
+/* Summary Stats */
+.summary-stats {
+  margin-top: 16px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.summary-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.summary-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-top: 4px;
+}
+
+/* Attack Type List */
+.attack-type-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.attack-type-row {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.attack-type-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  cursor: pointer;
+  background: #f9fafb;
+  transition: background 0.2s;
+}
+
+.attack-type-header:hover {
+  background: #f3f4f6;
+}
+
+.attack-type-name {
+  font-weight: 600;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.expand-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e5e7eb;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.attack-type-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.metric-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.metric-value {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.progress-bar-green {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.progress-bar-yellow {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.progress-bar-red {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+/* Attack Type Details */
+.attack-type-details {
+  padding: 16px;
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+}
+
+.detail-stats {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.detail-stat {
+  display: flex;
+  gap: 8px;
+}
+
+.stat-label {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.stat-value {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* Simulations List */
+.simulations-list h5 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+.simulation-item {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.simulation-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.simulation-number {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #1f2937;
+}
+
+.simulation-description {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* Transaction List */
+.transaction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: #fff;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  border-left: 3px solid transparent;
+}
+
+.transaction-item.caught {
+  border-left-color: #10b981;
+}
+
+.transaction-item.missed {
+  border-left-color: #ef4444;
+}
+
+.tx-id {
+  font-family: monospace;
+  color: #374151;
+  min-width: 120px;
+}
+
+.tx-score {
+  color: #6b7280;
+  min-width: 80px;
+}
+
+.tx-level {
+  color: #6b7280;
+  text-transform: capitalize;
+  min-width: 70px;
+}
+
+.tx-status {
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.tx-status.caught {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.tx-status.missed {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Bar Chart */
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bar-chart-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bar-label {
+  width: 140px;
+  font-size: 0.875rem;
+  color: #374151;
+  flex-shrink: 0;
+}
+
+.bar-container {
+  flex: 1;
+  height: 28px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  border-radius: 6px;
+  min-width: 50px;
+  transition: width 0.5s ease;
+}
+
+.bar-green {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.bar-yellow {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.bar-red {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+.bar-value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Color utilities */
+.text-green {
+  color: #10b981;
+}
+
+.text-red {
+  color: #ef4444;
+}
+
+.text-yellow {
+  color: #f59e0b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .attack-type-metrics {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .detail-stats {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .bar-label {
+    width: 100px;
+    font-size: 0.75rem;
+  }
+
+  .transaction-item {
+    flex-wrap: wrap;
+  }
+}

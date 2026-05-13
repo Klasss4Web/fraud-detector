@@ -1,0 +1,207 @@
+/* Simulation Progress Component */
+
+.simulation-progress {
+  background: linear-gradient(135deg, #1e293b, #334155);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.progress-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.progress-header svg {
+  color: #3b82f6;
+}
+
+/* Stages */
+.progress-stages {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 2rem;
+}
+
+.progress-stage {
+  display: flex;
+  gap: 1.25rem;
+  position: relative;
+  min-height: 70px;
+}
+
+.progress-stage:last-child {
+  min-height: auto;
+}
+
+.stage-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.stage-indicator svg {
+  flex-shrink: 0;
+}
+
+.stage-connector {
+  width: 3px;
+  flex: 1;
+  min-height: 30px;
+  background: #475569;
+  margin-top: 8px;
+  border-radius: 2px;
+  transition: background 0.3s;
+}
+
+.stage-connector.completed {
+  background: linear-gradient(180deg, #10b981, #10b981);
+}
+
+.stage-content {
+  flex: 1;
+  padding-bottom: 1rem;
+}
+
+.stage-content h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem 0;
+  color: #64748b;
+  transition: color 0.3s;
+  line-height: 1.4;
+}
+
+.stage-content p {
+  font-size: 0.85rem;
+  color: #475569;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.stage-detail {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(59, 130, 246, 0.2);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #60a5fa;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Stage States */
+.stage-completed .stage-indicator svg {
+  color: #10b981;
+}
+
+.stage-completed .stage-content h4 {
+  color: #10b981;
+}
+
+.stage-completed .stage-content p {
+  color: #64748b;
+}
+
+.stage-active .stage-indicator svg {
+  color: #3b82f6;
+}
+
+.stage-active .stage-content h4 {
+  color: white;
+}
+
+.stage-active .stage-content p {
+  color: #94a3b8;
+}
+
+.stage-pending .stage-indicator svg {
+  color: #475569;
+}
+
+.stage-pending .stage-content h4 {
+  color: #475569;
+}
+
+.stage-pending .stage-content p {
+  color: #374151;
+}
+
+/* Spinner */
+.stage-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Progress Bar */
+.progress-bar-container {
+  height: 8px;
+  background: #475569;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #10b981);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.progress-percentage {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .simulation-progress {
+    padding: 1.25rem;
+  }
+
+  .progress-stage {
+    min-height: 60px;
+  }
+
+  .stage-content h4 {
+    font-size: 0.9rem;
+  }
+
+  .stage-content p {
+    font-size: 0.8rem;
+  }
+}

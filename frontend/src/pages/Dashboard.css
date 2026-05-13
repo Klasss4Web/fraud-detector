@@ -1,0 +1,329 @@
+/* Dashboard Styles */
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dashboard-header-content {
+  flex: 1;
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+}
+
+.dashboard-subtitle {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.dashboard-status {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-loading {
+  color: #64748b;
+}
+
+.status-online {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.status-offline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #fecaca;
+  color: #dc2626;
+}
+
+/* Section */
+.dashboard-section {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 1rem 0;
+}
+
+/* Analysis Grid */
+.analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.analysis-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-top: 4px solid;
+}
+
+.analysis-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.analysis-card-blue {
+  border-top-color: #3b82f6;
+}
+
+.analysis-card-blue .analysis-card-icon {
+  color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.analysis-card-purple {
+  border-top-color: #8b5cf6;
+}
+
+.analysis-card-purple .analysis-card-icon {
+  color: #8b5cf6;
+  background-color: #f5f3ff;
+}
+
+.analysis-card-green {
+  border-top-color: #10b981;
+}
+
+.analysis-card-green .analysis-card-icon {
+  color: #10b981;
+  background-color: #ecfdf5;
+}
+
+.analysis-card-orange {
+  border-top-color: #f59e0b;
+}
+
+.analysis-card-orange .analysis-card-icon {
+  color: #f59e0b;
+  background-color: #fffbeb;
+}
+
+.analysis-card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.analysis-card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+}
+
+.analysis-card-description {
+  font-size: 0.875rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+  flex: 1;
+}
+
+.analysis-card-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #3b82f6;
+}
+
+/* Risk Guide */
+.risk-guide {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.risk-guide-item {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid;
+}
+
+.risk-guide-critical {
+  background-color: #fef2f2;
+  border-left-color: #ef4444;
+}
+
+.risk-guide-high {
+  background-color: #fff7ed;
+  border-left-color: #f97316;
+}
+
+.risk-guide-medium {
+  background-color: #fffbeb;
+  border-left-color: #f59e0b;
+}
+
+.risk-guide-low {
+  background-color: #ecfdf5;
+  border-left-color: #10b981;
+}
+
+.risk-guide-level {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.risk-guide-name {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.risk-guide-range {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.risk-guide-action {
+  font-size: 0.875rem;
+  color: #475569;
+  margin: 0;
+}
+
+/* System Info */
+.system-info {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.system-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.system-info-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.system-info-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.system-info-status {
+  color: #10b981;
+  text-transform: capitalize;
+}
+
+.agents-list {
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.agents-list-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748b;
+  margin: 0 0 0.75rem 0;
+}
+
+.agents-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.agent-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  background-color: #f1f5f9;
+  color: #475569;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+}
+
+/* Red Team Grid */
+.red-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.red-team-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #475569;
+}
+
+.red-team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.red-team-card h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin: 0 0 0.5rem 0;
+}
+
+.red-team-card p {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.red-team-card-highlight {
+  background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+  border-color: #8b5cf6;
+}
+
+.red-team-card-highlight:hover {
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+}
