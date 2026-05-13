@@ -1,31 +1,31 @@
 FROM python:3.10-slim
 
+# 1. Environment setup
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    POETRY_NO_INTERACTION=1 \
-    POETRY_VIRTUALENVS_CREATE=false
+    PATH="/root/.local/bin:$PATH"
 
 WORKDIR /app
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends gcc build-essential libffi-dev && \
+# 2. Install system tools and Poetry
+RUN apt-get update && apt-get install -y --no-install-recommends gcc build-essential && \
+    pip install poetry && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip install poetry
+# 3. Copy only the pyproject.toml
+COPY pyproject.toml ./
 
-# 1. Copy BOTH files. If poetry.lock is missing, poetry install will fail.
-# If you don't have a lock file yet, run 'poetry lock' locally first.
-COPY pyproject.toml poetry.lock* ./
+# 4. EXPORT AND INSTALL
+# We tell poetry to ignore the missing lock file and just install 
+# what's in the pyproject.toml directly into the system python.
+RUN poetry config virtualenvs.create false && \
+    poetry install --no-interaction --no-ansi --no-root --only main
 
-# 2. Key Change: Use --no-root
-# This installs only the dependencies and avoids the 'Package not found' error
-RUN poetry install --no-root --no-ansi
-
-# 3. Now copy the source code
+# 5. Copy the rest of your code
 COPY . .
 
-# 4. Final install to verify the root project
-RUN poetry install --no-ansi
+# 6. Final check: Ensure src is in the python path
+ENV PYTHONPATH=/app
 
 EXPOSE 8000
 
