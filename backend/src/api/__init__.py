@@ -12,16 +12,16 @@ from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from api.config import get_settings
-from api.routes import router, init_orchestrator
-from api.observability_routes import router as observability_router
-from api.error_handlers import (
+from src.api.config import get_settings
+from src.api.routes import router, init_orchestrator
+from src.api.observability_routes import router as observability_router
+from src.api.error_handlers import (
     ErrorHandlingMiddleware,
     APIError,
     api_error_handler,
     generic_exception_handler,
 )
-from observability import setup_logging as setup_structured_logging
+from src.observability import setup_logging as setup_structured_logging
 
 
 def setup_logging(log_level: str) -> None:
