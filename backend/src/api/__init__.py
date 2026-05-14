@@ -44,7 +44,7 @@ async def lifespan(app: FastAPI):
 
     # Initialize database (optional - gracefully handle if not available)
     try:
-        from db.session import init_db, check_database_health, check_redis_health
+        from src.db.session import init_db, check_database_health, check_redis_health
 
         # Check database health
         db_health = check_database_health()
