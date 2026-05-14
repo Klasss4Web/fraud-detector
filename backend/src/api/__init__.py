@@ -163,6 +163,7 @@ A comprehensive fraud detection API that uses specialized AI agents to detect fr
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
+        max_age=600,
     )
 
     # Add error handling middleware
