@@ -2,7 +2,7 @@
 Machine Learning module for fraud detection.
 """
 
-from ml.models import (
+from .models import (
     FraudModel,
     RuleBasedModel,
     ModelRegistry,
@@ -13,7 +13,7 @@ from ml.models import (
     get_fraud_model,
 )
 
-from ml.feedback import (
+from .feedback import (
     FeedbackCollector,
     FeedbackStats,
     OutcomeType,

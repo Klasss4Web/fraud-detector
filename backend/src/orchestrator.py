@@ -13,7 +13,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from uuid import uuid4
 
-from src.agents import (
+from .agents import (
     TransactionFraudAgent,
     InsuranceFraudAgent,
     IdentityFraudAgent,
@@ -25,15 +25,19 @@ from src.agents import (
     RiskLevel,
 )
 
+logger = logging.getLogger(__name__)
+
 # ML Integration
 try:
-    from ml import get_fraud_model, get_feedback_collector, FraudModel, FeatureSet
+    from .ml import get_fraud_model, get_feedback_collector, FraudModel, FeatureSet
+    logger.info(f"MACHINE LEARNING MODEL AVAILABLE")
 
     ML_AVAILABLE = True
 except ImportError:
     ML_AVAILABLE = False
     get_fraud_model = None
     get_feedback_collector = None
+    logger.warning(f"MACHINE LEARNING MODEL NOT AVAILABLE")
 
 # Metrics Integration
 try:
@@ -693,7 +697,7 @@ class FraudDetectionOrchestrator:
                     recorded = True
 
             except Exception as e:
-                self.logger.warning(f"Failed to record evaluation feedback: {e}")
+                self.er.warning(f"Failed to record evaluation feedback: {e}")
 
         if recorded:
             self.logger.info(f"Recorded outcome '{outcome}' for {prediction_id or transaction_id}")

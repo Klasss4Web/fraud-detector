@@ -7,7 +7,7 @@ import sys
 
 sys.path.insert(0, "src")
 
-from orchestrator import FraudDetectionOrchestrator
+from .orchestrator import FraudDetectionOrchestrator
 
 
 def test_mixed_detection():

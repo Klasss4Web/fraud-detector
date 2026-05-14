@@ -31,7 +31,7 @@ except ImportError:
 try:
     import redis as redis_lib
 
-    REDIS_AVAILABLE = True
+    REDIS_AVAILABLE = False # For future use
 except ImportError:
     REDIS_AVAILABLE = False
     redis_lib = None
