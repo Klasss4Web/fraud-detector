@@ -99,7 +99,7 @@ async def lifespan(app: FastAPI):
 
     # Stop metrics persistence
     try:
-        from observability import stop_metrics_persistence
+        from src.observability import stop_metrics_persistence
 
         stop_metrics_persistence()
         logger.info("Metrics persistence scheduler stopped")
@@ -107,7 +107,7 @@ async def lifespan(app: FastAPI):
         pass
 
     try:
-        from db.session import close_db
+        from srcc.db.session import close_db
 
         close_db()
     except Exception:
@@ -212,7 +212,7 @@ A comprehensive fraud detection API that uses specialized AI agents to detect fr
 
     # Authentication routes (optional - requires db module)
     try:
-        from auth.routes import router as auth_router
+        from src.auth.routes import router as auth_router
 
         app.include_router(auth_router, prefix="/api/v1")
         logging.getLogger("api").info("Authentication routes loaded")

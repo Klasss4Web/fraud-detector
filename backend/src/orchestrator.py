@@ -41,7 +41,7 @@ except ImportError:
 
 # Metrics Integration
 try:
-    from observability import get_fraud_metrics, get_evaluation_store, get_feedback_loop
+    from .observability import get_fraud_metrics, get_evaluation_store, get_feedback_loop
 
     METRICS_AVAILABLE = True
 except ImportError:
@@ -160,7 +160,7 @@ class FraudDetectionOrchestrator:
         """
         Simulates an LLM-generated attack and checks if the system caught it.
         """
-        from agents import SimulationAgent
+        from .agents import SimulationAgent
 
         simulator = SimulationAgent(
             api_key=getattr(self, "api_key", None) or getattr(self, "openai_api_key", None)
