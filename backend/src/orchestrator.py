@@ -798,7 +798,7 @@ class FraudDetectionOrchestrator:
         Run the FraudSimulationAgent to generate and analyze a synthetic attack.
         Returns the attack payload and the system's analysis result.
         """
-        from agents import FraudSimulationAgent
+        from .agents import FraudSimulationAgent
 
         sim_agent = FraudSimulationAgent(self.api_key)
         attack = sim_agent.simulate_attack(attack_type)
@@ -837,7 +837,7 @@ class FraudDetectionOrchestrator:
             - overall_metrics: Aggregated metrics across all types
             - detailed_results: Full results for each simulation
         """
-        from agents import FraudSimulationAgent
+        from .agents import FraudSimulationAgent
 
         if attack_types is None:
             attack_types = [
@@ -977,7 +977,7 @@ class FraudDetectionOrchestrator:
         Returns:
             Dictionary containing confusion matrix, metrics, and detailed results
         """
-        from agents import SimulationAgent
+        from .agents import SimulationAgent
 
         if detection_threshold is None:
             detection_threshold = self.auto_investigate_threshold
