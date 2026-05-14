@@ -155,7 +155,7 @@ A comprehensive fraud detection API that uses specialized AI agents to detect fr
         docs_url="/docs",
         redoc_url="/redoc",
     )
-
+    print(f"CORSSSSSSS, {settings.cors_origins}")
     # Add CORS middleware
     app.add_middleware(
         CORSMiddleware,
@@ -163,7 +163,7 @@ A comprehensive fraud detection API that uses specialized AI agents to detect fr
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
-        max_age=600,
+        max_age=0.5,
     )
 
     # Add error handling middleware
