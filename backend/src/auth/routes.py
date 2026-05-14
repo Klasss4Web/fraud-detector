@@ -23,11 +23,11 @@ except ImportError:
     SQLALCHEMY_AVAILABLE = False
     Session = None
 
-from db.session import get_db
-from db.models import User, UserRole
+from src.db.session import get_db
+from src.db.models import User, UserRole
 
 # Import auth module components (will fail gracefully if deps missing)
-from auth import (
+from .auth import (
     AuthService,
     get_current_user,
     require_role,
@@ -208,7 +208,7 @@ async def change_password(
     """
     Change current user's password.
     """
-    from auth import verify_password, get_password_hash
+    from .auth import verify_password, get_password_hash
 
     if not verify_password(request.current_password, current_user.hashed_password):
         raise HTTPException(
